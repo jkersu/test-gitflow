@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+change a
+change b
+=======
 # test-gitflow
 
-Changes for Pat Branch
-2nd commit from Pat branch
-CHANGES for main branch
+CHANGES
+
+This is a new change
+>>>>>>> e1bf89e (new commit)
