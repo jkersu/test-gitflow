@@ -1,0 +1,28 @@
+apiVersion: v1
+resourceType: data-structure
+meta:
+  hidden: false
+  schemaType: event
+  customData: {custom_tag: one}
+data:
+  $schema: http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#
+  description: Super important event yall
+  self:
+    vendor: com.jonsu
+    name: download_artefact
+    format: jsonschema
+    version: 1-0-0
+  type: object
+  properties: {
+    artefact_name: {
+      type: string,
+      x-sensitive: true,
+      description: Super secret project name,
+      maxLength: 100
+    },
+    artefact_id: {
+      type: string,
+      description: ID of artefact,
+      maxLength: 100
+    },
+  }
