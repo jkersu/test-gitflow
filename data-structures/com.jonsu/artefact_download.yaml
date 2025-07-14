@@ -9,7 +9,7 @@ data:
   description: Super important event yall
   self:
     vendor: com.jonsu
-    name: download_artefact
+    name: artefact_download
     format: jsonschema
     version: 1-0-0
   type: object
