@@ -1,0 +1,38 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: write
+
+jobs:
+
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      SNOWPLOW_CONSOLE_ORG_ID: 3883f10d-d184-4c33-af53-32ae57aaf14b
+      SNOWPLOW_CONSOLE_API_KEY_ID: ${{ secrets.SNOWPLOW_CONSOLE_API_KEY_ID }}
+      SNOWPLOW_CONSOLE_API_KEY: ${{ secrets.SNOWPLOW_CONSOLE_API_KEY_SECRET }}
+      SNOWPLOW_CONSOLE_MANAGED_FROM: ${{ github.server_url }}/${{ github.repository }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: snowplow-product/setup-snowplow-cli@v1
+
+      - run: |
+          if [ ${{github.ref_name}} = "main" ]; then
+            echo "SNP_ENV=prod" >> $GITHUB_ENV
+          elif [ ${{github.ref_name}} = "develop" ]; then
+            echo "SNP_ENV=dev" >> $GITHUB_ENV
+          else
+            echo "::error ::should only run on main or develop"
+            exit 1
+          fi
+
+      - name: publish
+        run: snowplow-cli ds pub ${{ env.SNP_ENV }} ./data-structures
