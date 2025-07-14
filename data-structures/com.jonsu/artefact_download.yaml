@@ -23,6 +23,11 @@ data:
     artefact_id: {
       type: string,
       description: ID of artefact,
-      maxLength: 256
+      maxLength: 100
     },
+    artefact_version: {
+      type: string,
+      description: version for artefact,
+      maxLength: 100
+    }
   }
