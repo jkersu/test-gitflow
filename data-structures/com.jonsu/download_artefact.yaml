@@ -17,7 +17,7 @@ data:
     artefact_name: {
       type: string,
       x-sensitive: true,
-      description: Super secret project name we need to hash,
+      description: Super secret project name,
       maxLength: 100
     },
     artefact_id: {
